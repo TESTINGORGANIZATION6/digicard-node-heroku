@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "10" 
+branches:
+  only:
+    - master
+install:
+  - npm install
+deploy:
+  provider: heroku
+  api_key: $HEROKU_KEY
+  on: master
+  app: digicard-node

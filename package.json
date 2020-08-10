@@ -1,0 +1,31 @@
+{
+  "name": "digicard-node-heroku",
+  "version": "1.0.0",
+  "description": "node APIs for digicard website",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TESTINGORGANIZATION6/digicard-node-heroku.git"
+  },
+  "keywords": [
+    "Node",
+    "Heroku"
+  ],
+  "author": "Hexovo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TESTINGORGANIZATION6/digicard-node-heroku/issues"
+  },
+  "homepage": "https://github.com/TESTINGORGANIZATION6/digicard-node-heroku#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}
