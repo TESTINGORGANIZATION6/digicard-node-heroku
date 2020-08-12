@@ -1,11 +1,18 @@
 const sgMail = require('@sendgrid/mail');
 
+/** email helper class */
 class emailHelper {
+    /**
+     * @param {String} to [receiver email address] 
+     */
     constructor(to) {
         this.to = to;
         this.website = 'https://www.hexovo.com'
     }
 
+    /**
+     * send email to user
+     */
     sendEmail() {
         try {
             sgMail.setApiKey(process.env.SENDGRID_API_KEY);

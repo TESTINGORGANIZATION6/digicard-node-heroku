@@ -1,0 +1,75 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Digital Card",
+    "description": "This is a sample server to generate digital card",
+    "contact": {
+      "email": "hexovo6@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://digicard-node.herokuapp.com/api/v1"
+    }
+  ],
+  "paths": {
+    "/sendemail": {
+      "post": {
+        "tags": [
+          "Email"
+        ],
+        "summary": "Send an email from server",
+        "requestBody": {
+          "description": "Reciever email address to send email",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Email"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessEmail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Email": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "SuccessEmail": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "email sent"
+          }
+        }
+      }
+    }
+  }
+}
