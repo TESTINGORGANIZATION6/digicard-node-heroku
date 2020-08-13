@@ -17,10 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1', require('./routes/email_routes'));
 
-app.get('/', (req, res) => {
-    res.send('Hi')
-})
-
 app.listen(port, () =>  {
     console.log(`Server is running on port ${port}`)
 })
+
+module.exports = app

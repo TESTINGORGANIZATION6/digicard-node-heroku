@@ -22,6 +22,9 @@ class emailHelper {
                 subject: 'Your PDF is ready',
                 html: `Please download your PDF. Please visit us at <a href='${this.website}'>hexovo</a>`,
             };
+            if (msg.to === undefined) {
+                throw 'Receiver email in not defined'
+            }
             sgMail.send(msg)
         } catch (error) {
             console.log(error)
