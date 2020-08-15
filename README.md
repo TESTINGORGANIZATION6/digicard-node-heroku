@@ -1,0 +1,1 @@
+[![Coverage Status](https://coveralls.io/repos/github/TESTINGORGANIZATION6/digicard-node-heroku/badge.svg?branch=master)](https://coveralls.io/github/TESTINGORGANIZATION6/digicard-node-heroku?branch=master)
