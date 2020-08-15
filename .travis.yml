@@ -11,3 +11,5 @@ deploy:
   api_key: $HEROKU_KEY
   on: master
   app: digicard-node
+script: npm test
+after_success: npm run coverage
