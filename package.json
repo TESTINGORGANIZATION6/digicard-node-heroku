@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha --require babel-register tests/*.js --exit",
-    "coverage": "nyc npm run test | coveralls"
+    "coverage": "nyc npm run test"
   },
   "repository": {
     "type": "git",
@@ -37,7 +37,6 @@
     "babel-cli": "^6.26.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "coveralls": "^3.1.0",
     "mocha": "^8.1.1",
     "nyc": "^15.1.0"
   }
