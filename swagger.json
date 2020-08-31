@@ -48,6 +48,41 @@
           }
         }
       }
+    },
+    "/addorder": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Add new order in database",
+        "requestBody": {
+          "description": "All the details of order",
+          "content": {
+            "form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessOrder"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -67,6 +102,80 @@
           "message": {
             "type": "string",
             "example": "email sent"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Ryan"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "pdf": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      },
+      "SuccessOrder": {
+        "type": "object",
+        "properties": {
+          "pdf": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "Buffer"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "example": []
+                    }
+                  },
+                  "contentType": {
+                    "type": "string",
+                    "example": "pdf"
+                  }
+                }
+              }
+            }
+          },
+          "_id": {
+            "type": "string",
+            "example": "5e6d4169de71e629c4d72417"
+          },
+          "name": {
+            "type": "string",
+            "example": "Ryan"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "uuid": {
+            "type": "string",
+            "example": "64f92d45-eb7f-4b6e-a27f-126ad898df65"
+          },
+          "status": {
+            "type": "string",
+            "example": "In-progress"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date"
           }
         }
       }
