@@ -38,3 +38,75 @@ exports.addOrder = (req, res) => {
         })
     })
 }
+
+/**
+ * List all orders from database
+ */
+
+exports.listOrders = (req, res) => {
+    Order.find()
+        .select('-pdf')
+        .exec((error, orders) => {
+            if (error) {
+                return res.status(400).json({
+                    error
+                })
+            }
+            return res.json(orders)
+    })
+}
+
+ /**
+  * List order by ID
+  */
+
+exports.listOrderById = (req, res, next, id) => {
+    Order.findById(id)
+        .exec((error, order) => {
+            if (error) {
+                return res.status(400).json({
+                    error
+                })
+            }
+            req.order = order
+            next()
+        })
+}
+
+/**
+ * Get order by ID
+ */
+
+exports.getOrderById = (req, res) => {
+    req.order.pdf = undefined
+    return res.json(req.order)
+}
+
+/**
+ * Delete orders where status is complete
+ */
+
+exports.deleteCompletedOrders = () => {
+    console.log("Running cron for deletion")
+    Order.find()
+        .exec((error, orders) => {
+            if (error) {
+                console.log(error)
+                // TO DO: Send notifications to owners when this is failed
+            } else {
+                orders.map(order => {
+                    if (order.status === "complete") {
+                        Order.findByIdAndDelete(order._id)
+                            .exec(err => {
+                                if (err) {
+                                    console.log(err)
+                                    // TO DO: Send notifications to owners when this is failed
+                                } else {
+                                    console.log(`${order.name} deleted`)
+                                }
+                            })
+                    }
+                })
+            }
+        })
+}
