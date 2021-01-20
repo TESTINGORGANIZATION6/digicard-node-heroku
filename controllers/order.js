@@ -1,6 +1,7 @@
 const fs = require('fs')
 const formidable = require('formidable')
 const Order = require('../models/Order')
+const { sendFailureEmail } = require('./email')
 
 /**
  Add order in mongodb
@@ -87,12 +88,12 @@ exports.getOrderById = (req, res) => {
  */
 
 exports.deleteCompletedOrders = () => {
-    console.log("Running cron for deletion")
     Order.find()
         .exec((error, orders) => {
             if (error) {
                 console.log(error)
-                // TO DO: Send notifications to owners when this is failed
+                const html = 'Fail to retrive orders from database'
+                sendFailureEmail(html)
             } else {
                 orders.map(order => {
                     if (order.status === "complete") {
@@ -100,7 +101,8 @@ exports.deleteCompletedOrders = () => {
                             .exec(err => {
                                 if (err) {
                                     console.log(err)
-                                    // TO DO: Send notifications to owners when this is failed
+                                    const html = 'Fail to delete completed order from database'
+                                    sendFailureEmail(html)
                                 } else {
                                     console.log(`${order.name} deleted`)
                                 }

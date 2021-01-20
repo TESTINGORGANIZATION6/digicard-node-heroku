@@ -33,6 +33,7 @@
     "morgan": "^1.10.0",
     "node-cron": "^2.0.3",
     "swagger-ui-express": "^4.1.4",
+    "twilio": "^3.49.1",
     "uuid": "^8.3.0"
   },
   "engines": {
